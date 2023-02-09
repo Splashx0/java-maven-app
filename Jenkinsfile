@@ -9,28 +9,28 @@ pipeline {
     stages {
         stage("init") { 
                 steps {
-                    script{
+                    script{ 
                         gv = load "script.groovy" //global 
                     }
                 }
             }
         stage("build") { 
             steps {
-                scripts{
+                script{
                      gv.buildApp()
                 }
             }
         }
         stage("test") {
             steps {
-             scripts{
+             script{
                      gv.testApp()
                 }           
           }
         }
         stage("deploy") {
             steps {
-                 scripts{
+                 script{
                      gv.deployApp()
                 }
             }
