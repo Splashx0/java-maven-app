@@ -1,4 +1,19 @@
-def buildJar() {
+
+def buildApp(){
+    echo 'Building the application...'
+}
+
+def testApp(){
+    echo 'Testing the application...'
+}
+
+def deployApp(){
+    echo 'Deploying the application...'
+    echo 'Deploying version ${params.VERSION}'
+}
+return this
+
+/*def buildJar() {
     echo "building the application..."
     sh 'mvn package'
 } 
@@ -16,4 +31,4 @@ def deployApp() {
     echo 'deploying the application...'
 } 
 
-return this
+return this*/
