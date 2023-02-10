@@ -1,41 +1,40 @@
-def gv //global variable
+def gv
 
 pipeline {
     agent any
+    tools {
+        maven 'Maven'
+    }
 
     stages {
-        stage("init") { 
+        stage("init"){
+            steps{
+                script{
+                    gv = load "script.groovy"
+                }
+            }
+        }
+        stage("build jar") { 
                 steps {
                     script{ 
-                        gv = load "script.groovy" //global 
+                        gv.buildJar()
                     }
                 }
             }
-        stage("build") { 
+        stage("build image") { 
             steps {
                 script{
-                     gv.buildApp()
+                    gv.buildImage()
                 }
             }
-        }
-        stage("test") {
-            when{
-                expression{
-                    params.executeTests
-                }
-            }
-            steps {
-             script{
-                     gv.testApp()
-                }           
-          }
         }
         stage("deploy") {
+
             steps {
-                 script{
-                     gv.deployApp()
-                }
-            }
+             script{
+                    gv.deployApp()
+                }           
+          }
         }
     }   
 }
