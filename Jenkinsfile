@@ -21,7 +21,7 @@ pipeline {
                     usernameVariable:'USER'
                     )]){
                         sh 'docker build -t splashdocker1/java-maven-app:2.0 .'
-                        sh "echo $PASS | docker login -u $USER -password-stdin"
+                        sh "echo $PASS | docker login -u $USER --password-stdin"
                         sh "docker push splashdocker1/java-maven-app:2.0"
                     }
                 }
