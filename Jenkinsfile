@@ -1,5 +1,3 @@
-def gv //global variable
-
 pipeline {
     agent any
     tools {
@@ -36,13 +34,6 @@ pipeline {
                     echo "deploying the application..."
                 }           
           }
-        }
-        stage("deploy") {
-            steps {
-                 script{
-                     gv.deployApp()
-                }
-            }
         }
     }   
 }
