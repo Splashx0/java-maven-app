@@ -17,7 +17,7 @@ pipeline {
                 } 
                 steps {
                     script{ 
-                        gv.buildJar()
+                        echo "building the application..."
                     }
                 }
             }
@@ -29,7 +29,7 @@ pipeline {
                     }   
                 steps {
                 script{
-                        gv.deployApp()
+                        echo "deploying the application..."
                     }           
             }
         }
