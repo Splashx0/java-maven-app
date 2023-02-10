@@ -2,6 +2,7 @@ def gv //global variable
 
 pipeline {
     agent any
+
     stages {
         stage("init") { 
                 steps {

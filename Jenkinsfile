@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script{
                     echo "building the docker image..."
-                    withCredentials([usernamePassword(credentialsId('docker-hub-repo'),passwordVariable:'PASS',
+                    withCredentials([usernamePassword(credentialsId:'docker-hub-repo',passwordVariable:'PASS',
                     usernameVariable:'USER'
                     )]){
                         sh 'docker build -t splashdocker1/java-maven-app:2.0 .'
