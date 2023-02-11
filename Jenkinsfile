@@ -25,7 +25,7 @@ pipeline {
         stage("build image") { 
             steps {
                 script{
-                    buildImage()
+                    buildImage 'splashdocker1/java-maven-app:3.0'
                 }
             }
         }
