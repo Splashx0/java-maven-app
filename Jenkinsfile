@@ -22,10 +22,12 @@ pipeline {
                     }
                 }
             }
-        stage("build image") { 
+        stage("build  and push image") { 
             steps {
                 script{
                     buildImage 'splashdocker1/java-maven-app:3.0'
+                    dockerLogin()
+                    dockerPush 'splashdocker1/java-maven-app:3.0'
                 }
             }
         }
