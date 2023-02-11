@@ -1,5 +1,5 @@
-library identifier:  'jenkins-shared-library@master',retriever:modernSCM(
-    [   $class:'GitSCMsource',
+library identifier:'jenkins-shared-library@master',retriever:modernSCM(
+    [   $class:'GitSCMSource',
         remote:'https://github.com/Splashx0/jenkins-shared-library.git',
         credentials:'github-credentials'])
 //@Library('jenkins-shared-library')
