@@ -4,6 +4,7 @@ pipeline {
         stage("test"){
             steps{
                 script{
+                    echo "testing the trigger for multibranch-pipeline"
                     echo "testing the application..."
                     echo "Executing pipeline for branch $BRANCH_NAME"
                 }
