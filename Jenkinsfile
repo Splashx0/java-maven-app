@@ -13,6 +13,7 @@ pipeline {
                             def version = matcher[0][1]     //match every version tag in the pom.xml so we need the first one
                             env.IMAGE_NAME="$version-$BUILD_NUMBER"   //BUILD_NUMBER env variable from jenkins
                         }                                             //one of common ways of versionnig docker image
+                    
                     }
                 }
         stage("build app") {
@@ -39,6 +40,25 @@ pipeline {
             steps {
              script{
                    echo 'deploying docker image to EC2..'
+                }
+          }
+        }
+        stage("commit version update in git repo") { //access git and commit changes to it
+            steps {
+             script{
+                 withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]){
+                    sh  'git config --global user.email "jenkins@example.com"' //globalby for all the projects  
+                    sh  'git config --global user.name "jenkins"' // wee could too ssh to jenkins server and set the config
+
+                    sh 'git status'
+                    sh 'git branch'
+                    sh 'git config --list' 
+
+                    sh "git remote set-url origin https://$USER:$PASS@github.com/Splashx0/java-maven-app.git"  //jenkins need to connect to  git repo with credentials
+                    sh 'git add .'
+                    sh 'git commit -m "ci: version bump"'
+                    sh 'git push origin HEAD:jenkins-versionning'
+                 }
                 }
           }
         }
