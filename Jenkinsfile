@@ -46,7 +46,7 @@ pipeline {
         stage("commit version update in git repo") { //access git and commit changes to it
             steps {
              script{
-                 withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]){
+                 withCredentials([usernamePassword(credentialsId: 'github-cred', passwordVariable: 'PASS', usernameVariable: 'USER')]){
                     sh  'git config --global user.email "jenkins@example.com"' //globalby for all the projects  
                     sh  'git config --global user.name "jenkins"' // wee could too ssh to jenkins server and set the config
 
