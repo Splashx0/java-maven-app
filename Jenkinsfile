@@ -4,7 +4,7 @@ pipeline {
         maven 'Maven'
     }
     stages {
-        stage("incrmeent version") {
+        stage("increment version") {
                     steps {
                         script{
                             echo 'incrementing app version...'
@@ -47,12 +47,12 @@ pipeline {
             steps {
              script{
                  withCredentials([usernamePassword(credentialsId: 'github-cred', passwordVariable: 'PASS', usernameVariable: 'USER')]){
-                    sh  'git config --global user.email "jenkins@example.com"' //globalby for all the projects  
+                    /*sh  'git config --global user.email "jenkins@example.com"' //globalby for all the projects  
                     sh  'git config --global user.name "jenkins"' // wee could too ssh to jenkins server and set the config
 
                     sh 'git status'
                     sh 'git branch'
-                    sh 'git config --list' 
+                    sh 'git config --list' */
 
                     sh "git remote set-url origin https://${USER}:${PASS}@github.com/Splashx0/java-maven-app.git"  //jenkins need to connect to  git repo with credentials
                     sh 'git add .'
