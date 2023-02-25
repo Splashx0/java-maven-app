@@ -11,26 +11,21 @@ pipeline {
             }
         }
         stage("build") {
-                when{
-                    expression{
-                        BRANCH_NAME == "master"
-                    }
-                } 
+  
                 steps {
                     script{ 
                         echo "building the application..."
                     }
                 }
             }
-        stage("deploy") {
-                when{
-                    expression{
-                        BRANCH_NAME == "master"
-                        }
-                    }   
+        stage("deploy") {  
                 steps {
                 script{
                         echo "deploying the application..."
+                        def dockerCmd="docker run -p 3080:80 -d rizkyaditomo/react-nodejs-example:v1"
+                        sshagent(['ec2-server-key']){
+                            sh "ssh -o StrictHostKeyChecking=no ec2-user@3.238.138.75 ${dockerCmd}"
+                        }
                     }           
             }
         }
